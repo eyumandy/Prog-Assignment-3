@@ -15,19 +15,12 @@ def run_solver(input_path):
     return result.stdout.strip(), result.returncode
 
 
-def validate_format(output, input_path):
+def validate_format(output):
     lines = output.splitlines()
     if len(lines) != 2:
         return False, "expected exactly 2 lines of output"
-    if not lines[0].isdigit():
+    if not lines[0].lstrip("-").isdigit():
         return False, f"first line is not an integer: {lines[0]!r}"
-    return True, ""
-
-
-def check_against_expected(output, expected_path):
-    expected = expected_path.read_text().strip()
-    if output != expected:
-        return False, f"got {output!r}, expected {expected!r}"
     return True, ""
 
 
@@ -44,17 +37,18 @@ def run_all():
             failed += 1
             continue
 
-        ok, msg = validate_format(output, input_path)
+        ok, msg = validate_format(output)
         if not ok:
             print(f"  FAIL  {label}  {msg}")
             failed += 1
             continue
 
+        # only do exact match where a tracked .out exists (example only)
         expected_path = input_path.with_suffix(".out")
         if expected_path.exists():
-            ok, msg = check_against_expected(output, expected_path)
-            if not ok:
-                print(f"  FAIL  {label}  {msg}")
+            expected = expected_path.read_text(encoding="utf-8").strip()
+            if output != expected:
+                print(f"  FAIL  {label}  got {output!r}, expected {expected!r}")
                 failed += 1
                 continue
 
