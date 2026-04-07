@@ -79,16 +79,16 @@ Ten input files were generated with string lengths ranging from 25 to 500 (`|A| 
 
 | File        | n   | Runtime (ms) |
 |-------------|-----|-------------|
-| test_01.in  | 25  | 47.1        |
-| test_02.in  | 50  | 53.5        |
-| test_03.in  | 75  | 52.4        |
-| test_04.in  | 100 | 49.8        |
-| test_05.in  | 150 | 55.3        |
-| test_06.in  | 200 | 57.4        |
-| test_07.in  | 275 | 90.2        |
-| test_08.in  | 350 | 101.0       |
-| test_09.in  | 425 | 114.8       |
-| test_10.in  | 500 | 137.4       |
+| test_01.in  | 25  | 32.9        |
+| test_02.in  | 50  | 32.6        |
+| test_03.in  | 75  | 34.9        |
+| test_04.in  | 100 | 34.0        |
+| test_05.in  | 150 | 36.4        |
+| test_06.in  | 200 | 39.5        |
+| test_07.in  | 275 | 46.2        |
+| test_08.in  | 350 | 54.6        |
+| test_09.in  | 425 | 64.8        |
+| test_10.in  | 500 | 76.6        |
 
 The flat region at small n is Python interpreter startup (~50ms). Past n=200 the DP table dominates and the curve bends upward, consistent with O(n²) growth.
 
