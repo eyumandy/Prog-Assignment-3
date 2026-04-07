@@ -1,6 +1,6 @@
 # generated test inputs — run src/generate_tests.py to reproduce
 data/test_*.in
-
+data/test_*.out
 # byte-compiled
 __pycache__/
 *.pyc
